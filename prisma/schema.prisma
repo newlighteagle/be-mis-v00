@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  password   String
+  role       String @default("unregistered")
+  group      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model SidebarMenu {
+  id          Int      @id @default(autoincrement())
+  label       String   @unique
+  path        String
+  icon        String?
+  order_index Int      @default(0)
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model WPEvidence {
+  id            String   @id @default(cuid())
+  district      String
+  ics           String
+  activity_code String
+  activity      String
+  evidence_note String
+  evidence_date String
+  link          String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}
