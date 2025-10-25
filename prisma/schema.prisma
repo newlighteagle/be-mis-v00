@@ -41,3 +41,35 @@ model WPEvidence {
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 }
+
+model District {
+  id           String    @id @default(cuid())
+  district_id  String    @unique
+  name         String
+  ics          Ics[]
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+}
+
+model Ics {
+  id           String     @id @default(cuid())
+  district_id  String
+  ics_id       String     @unique
+  name         String
+  district     District   @relation(fields: [district_id], references: [district_id])
+  farmers      Farmer[]
+  created_at   DateTime   @default(now())
+  updated_at   DateTime   @updatedAt
+}
+
+model Farmer {
+  id           String    @id @default(cuid())
+  farmer_id    String    @unique
+  name         String
+  gender       String?
+  birth_date   DateTime?
+  ics_id       String?
+  ics          Ics?      @relation(fields: [ics_id], references: [ics_id])
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt
+}

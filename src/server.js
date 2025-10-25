@@ -4,6 +4,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import menuRoutes from "./routes/menuRoutes.js";
 import wpEvidenceRoutes from "./routes/wpEvidenceRoutes.js";
+import farmerRoutes from "./routes/farmer.js";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => res.send("✅ SmallholderHUB API running"));
 app.use("/api/users", userRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/wp-evidence", wpEvidenceRoutes);
+app.use("/api/farmers", farmerRoutes);
 
 const PORT = process.env.PORT || 5050;
 // Hanya listen jika dijalankan lokal

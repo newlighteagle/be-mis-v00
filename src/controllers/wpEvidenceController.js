@@ -1,5 +1,5 @@
 // src/controllers/wpEvidenceController.js
-import prisma from "../prismaClient.js";
+import prisma from "../lib/prisma.js";
 
 // Get all WP Evidence
 export const getAllWPEvidence = async (req, res) => {
