@@ -22,4 +22,10 @@ app.use("/api/menu", menuRoutes);
 app.use("/api/wp-evidence", wpEvidenceRoutes);
 
 const PORT = process.env.PORT || 5050;
-app.listen(PORT, "0.0.0.0", () => console.log(`🚀 Server running on port ${PORT}`));
+// Hanya listen jika dijalankan lokal
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, () => console.log(`🚀 Server running on port ${port}`));
+}
+
+// Export handler untuk Vercel
+export default app;
